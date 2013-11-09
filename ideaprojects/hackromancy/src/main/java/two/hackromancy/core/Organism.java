@@ -2,7 +2,7 @@ package two.hackromancy.core;
 
 import java.util.ArrayList;
 
-public class Organism {
+public class Organism implements Noun{
         protected float x, y;
         protected String id;
         protected float health;
