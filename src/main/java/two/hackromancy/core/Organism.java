@@ -74,7 +74,7 @@ public class Organism {
 
 	public void runStates() {
 		for (State i : states) {
-			if (not(i.run())) {states.remove(i);}
+			if (!i.isRunning()) {states.remove(i);}
 		}
 	}
 
