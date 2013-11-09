@@ -1,4 +1,4 @@
-hackromancy
+Hackromancy
 ===========
 
 A simple RPG where hacking is magic.
