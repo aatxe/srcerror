@@ -6,7 +6,7 @@ public class ActiveSpell{
 	private float xVelocity, yVelocity;
 	private float speed;
 	private boolean alive;
-	private ArrayList<Noun> nouns;
+	private ArrayList<Noun> worldNouns;
 	private Player player;
 	private ActivePlayerSpellType spell;
 	
@@ -35,7 +35,18 @@ public class ActiveSpell{
         public boolean isAlive() {
         	return alive;
         }
-        
+        private ArrayList<Noun> nounsWithinRadius(float radius) {
+
+        	ArrayList<Noun> nounsInRadius = new ArrayList<Noun>();
+        	for(int i = 0; i < worldNouns.size(); i++) {
+            		Noun curr = worldNouns.get(i);
+            		float dist = Math.sqrt((curr.getX() - x) * (curr.getX() - x) + (curr.getY() - y) * (curr.getY() - y));
+        		if(dist <= radius)
+                		nounsInRadius.add(curr);
+        	}
+
+        	return nounsInRadius;
+    	}
 	//add methods like damage which do damage to enerything within a radius
 	public boolean run(){
 		//if(spell.isDamaging())damage(spell.damage());
