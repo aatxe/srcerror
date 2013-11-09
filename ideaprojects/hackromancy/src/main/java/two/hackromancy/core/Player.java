@@ -28,8 +28,9 @@ public class Player implements Organism{
 }
 	public void runItems(){
 		for(Item i:items){
-		if(not(i.run())){items.remove(i);}
-		}
+		if(!i.isRunning())
+			items.remove(i);}
+		
 	}
 
 	public void regen(){
