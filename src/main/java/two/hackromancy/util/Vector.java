@@ -79,22 +79,23 @@ public class Vector {
 
 	public float[] asFloatArray(int n) {
 		float vec[] = new float[n];
-		if (n >= 4) {
-			vec[0] = x;
-			vec[1] = y;
-			vec[2] = z;
-			vec[3] = w;
-		} else if (n == 3) {
-			vec[0] = x;
-			vec[1] = y;
-			vec[2] = z;
-		} else if (n == 2) {
-			vec[0] = x;
-			vec[1] = y;
-		} else if (n == 1) {
-			vec[0] = x;
-		} else {
-			return null;
+		switch (n) {
+			case 4:
+				vec[0] = x;
+				vec[1] = y;
+				vec[2] = z;
+				vec[3] = w;
+			case 3:
+				vec[0] = x;
+				vec[1] = y;
+				vec[2] = z;
+			case 2:
+				vec[0] = x;
+				vec[1] = y;
+			case 1:
+				vec[0] = x;
+			default:
+				vec = null;
 		}
 		return vec;
 	}

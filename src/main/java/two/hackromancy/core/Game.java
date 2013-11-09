@@ -17,12 +17,12 @@ public class Game extends Window {
 
 	@Override
 	public void init() {
+		clear();
 	}
 
 	@Override
 	public void update(float ticksPassed) {
 		// TODO: game logic
-		clear();
 	}
 
 	@Override
