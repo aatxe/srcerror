@@ -5,8 +5,8 @@ import java.util.ArrayList;
 public class Organism {
 	protected float x, y;
 	protected String id;
-	protected int health;
-	protected int speed;
+	protected float health;
+	protected float speed;
 	protected ArrayList<State> states = new ArrayList<State>();
 
 	public Organism(float nx, float ny, int health, float speed, String nId) {
