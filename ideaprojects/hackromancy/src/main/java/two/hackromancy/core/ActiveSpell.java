@@ -34,6 +34,16 @@ public class ActiveSpell{
         public boolean isAlive() {
         	return spell.isAlive();
         }
+        public void floodDamage(float radius) {
+
+                    ArrayList<Noun> nouns = nounsWithinRadius(radius);
+                    for(int i = 0; i < nouns.size(); i++) {
+                        if(nouns.get(i) instanceof Organism) {
+                                    nouns.get(i).changeHealth(-20);
+                                    player.changeEnergy((int)(-radius));
+                        }
+                    }
+        }
         
         public void floodFireState(float radius) {
 
