@@ -17,6 +17,8 @@ public class ActiveSpell{
 		spell = newSpell;
 		speed = 2.0;
 		this.id = id;
+		xVelocity=0.0;
+		yVelocity=0.0;
 	}
 	
 	public void changeXVelcoity(float velocity) {
@@ -34,6 +36,11 @@ public class ActiveSpell{
         public boolean isAlive() {
         	return spell.isAlive();
         }
+        public void velocityChange(float xchange,float ychange){
+		xVelocity+=xchange;
+		yVelocity+=ychange;
+		player.changeEnergy((int)(-xchange-ychange))
+	}
 	public void floodSpeedChange(float radius,float change) {
 
                     ArrayList<Noun> nouns = nounsWithinRadius(radius);
@@ -126,7 +133,8 @@ public class ActiveSpell{
 	public boolean run(){
 		spell.run();
 		//if(spell.isDamaging())damage(spell.damage());
-		
+		x+=xVelocity;
+		y+=yVelocity;
 		if(spell.isCurseStating())
            	    floodStunState(spell.getCurseStateRadius());
         	if(spell.isFireStating())
@@ -141,6 +149,9 @@ public class ActiveSpell{
             	    floodStunState(spell.getSpeedChangeRadius(),spell.getSpeedChangeAmount());
             	if(spell.isFloodDamaging())
             	    floodStunState(spell.getDamagingRadius(),spell.getDamagingAmount());
+            	if(spell.isVelocityChanging())
+            	    floodStunState(spell.getXVelocityChange(),spell.getYVelocityChange());
+            	
             		
 		return spell.isAlive();
 	}
