@@ -39,8 +39,10 @@ public class ActiveSpell{
 
         	ArrayList<Noun> nouns = nounsWithinRadius(radius);
         	for(int i = 0; i < nouns.size(); i++) {
-            		if(nouns.get(i) instanceof Organism)
+            		if(nouns.get(i) instanceof Organism) {
                 		nouns.get(i).addState(new FireState());
+                		player.changeEnergy((int)(-radius));
+            		}
         	}
     	}	
     
@@ -48,8 +50,10 @@ public class ActiveSpell{
 
         	ArrayList<Noun> nouns = nounsWithinRadius(radius);
         	for(int i = 0; i < nouns.size(); i++) {
-            		if(nouns.get(i) instanceof Organism)
+            		if(nouns.get(i) instanceof Organism) {
                 		nouns.get(i).addState(new SlowState());
+                		player.changeEnergy((int)(-radius));
+            		}
         	}
     	}
     	
