@@ -2,7 +2,7 @@ package two.hackromancy.core;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-public class Player implements Organism{
+public class Player extends Organism{
 	private String userName;
 	private ArrayList<Item> items=new ArrayList<Item>();
 	private HashMap<Spell> spells;
@@ -28,13 +28,12 @@ public class Player implements Organism{
 }
 	public void runItems(){
 		for(Item i:items){
-		if(!i.isRunning())
-			items.remove(i);
-		
+		if(not(i.run())){items.remove(i);}
+		}
 	}
 
 	public void regen(){
-		changeHealth(10);
+	changeHealth(10);
 	}
 
 	public boolean run(){
