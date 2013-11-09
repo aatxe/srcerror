@@ -1,15 +1,7 @@
-Hackromancy
+SrcError
 ===========
 
 A simple RPG where hacking is magic.
-
-Alternate name ideas:
----------------------
-Sourcerer
-
-srcerror
-
-CodeMage
 
 Justification
 =============
@@ -19,4 +11,4 @@ Are you a programmer who secretly wishes to be a wizard?
 
 Do you want to learn programming and magic at the same time?
 
-*Well, hackromancy/bettername is the game for you and everyone you know and everyone else!*
+*Well, SrcError is the game for you and everyone you know and everyone else!*
