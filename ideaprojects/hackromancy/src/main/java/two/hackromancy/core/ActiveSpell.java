@@ -34,13 +34,23 @@ public class ActiveSpell{
         public boolean isAlive() {
         	return spell.isAlive();
         }
-        public void floodDamage(float radius) {
+	public void floodSpeedChange(float radius,float change) {
 
                     ArrayList<Noun> nouns = nounsWithinRadius(radius);
                     for(int i = 0; i < nouns.size(); i++) {
                         if(nouns.get(i) instanceof Organism) {
-                                    nouns.get(i).changeHealth(-20);
-                                    player.changeEnergy((int)(-radius));
+                                    nouns.get(i).changeSpeed(change);
+                                    player.changeEnergy((int)(-radius-change));
+                        }
+                    }
+        }
+        public void floodDamage(float radius,float amount) {
+
+                    ArrayList<Noun> nouns = nounsWithinRadius(radius);
+                    for(int i = 0; i < nouns.size(); i++) {
+                        if(nouns.get(i) instanceof Organism) {
+                                    nouns.get(i).changeHealth(-amount);
+                                    player.changeEnergy((int)(-radius+amount*amount));
                         }
                     }
         }
@@ -127,6 +137,10 @@ public class ActiveSpell{
             	    floodSlowState(spell.getSlowStateRadius());
         	if(spell.isStunStating())
             	    floodStunState(spell.getStunStateRadius());
+            	if(spell.isSpeedChanging())
+            	    floodStunState(spell.getSpeedChangeRadius(),spell.getSpeedChangeAmount());
+            	if(spell.isFloodDamaging())
+            	    floodStunState(spell.getDamagingRadius(),spell.getDamagingAmount());
             		
 		return spell.isAlive();
 	}
