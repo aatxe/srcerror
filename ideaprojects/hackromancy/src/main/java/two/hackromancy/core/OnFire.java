@@ -1,7 +1,7 @@
 package two.hackromancy.core;
 public class OnFire extends State{
 	int ticksLeft;
-	int damageDone
+	int damageDone;
 	Organism organism;
     public OnFire(Organism newOrganism,int ticks, int damage){
 	ticksLeft=ticks;
