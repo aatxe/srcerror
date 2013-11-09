@@ -12,23 +12,29 @@ import two.hackromancy.lwjgl.Window;
 public class Game extends Window {
 	public Game() throws LWJGLException {
 		super(800, 600);
+		setTitle("Hackromancy");
 	}
 
 	@Override
 	public void init() {
-		GL11.glClearColor(0.4f, 0.6f, 0.9f, 1.0f);
-		GL11.glClear(GL11.GL_COLOR_BUFFER_BIT);
 	}
 
 	@Override
 	public void update(float ticksPassed) {
 		// TODO: game logic
+		clear();
 	}
 
 	@Override
 	public void render() {
 		// TODO: rendering logic
+		clear();
 		setupView();
+	}
+
+	public void clear() {
+		GL11.glClearColor(0.4f, 0.6f, 0.9f, 1.0f);
+		GL11.glClear(GL11.GL_COLOR_BUFFER_BIT);
 	}
 
 	public void setupView() {

@@ -54,10 +54,10 @@ public abstract class Window {
 		Stopwatch updateTimer = new Stopwatch();
 		fpsTimer.start();
 		while (isRunning && !Display.isCloseRequested()) {
-			this.update((updateTimer.elapsed(TimeUnit.MILLISECONDS) / 1000f) * Constants.TICKS_PER_SECOND);
+			update((updateTimer.elapsed(TimeUnit.MILLISECONDS) / 1000f) * Constants.TICKS_PER_SECOND);
 			updateTimer.reset();
 			updateTimer.start();
-			this.render();
+			render();
 			frameCount++;
 			if (fpsTimer.elapsed(TimeUnit.SECONDS) >= 1) {
 				fps = frameCount;
