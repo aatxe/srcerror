@@ -5,21 +5,23 @@ public class OnFire extends State{
 	int damageDone
 	Organism organism;
     
-    	public OnFire(Organism newOrganism,int ticks, int damage){
-		ticksLeft=ticks;
-		organism=newOrganism;
-		damageDone=damage;
-    	}
+    public OnFire(Organism newOrganism,int ticks, int damage){
+	ticksLeft=ticks;
+	organism=newOrganism;
+	damageDone=damage;
+    }
     	
-    	public OnFire(Organism newOrganism,int ticks){
-		ticksLeft=ticks;
-		organism=newOrganism;
-		damageDone=15;
-	}
+    public OnFire(Organism newOrganism,int ticks){
+	ticksLeft=ticks;
+	organism=newOrganism;
+	damageDone=15;
+    }
 
-    	public void run(){
-		organism.changeHealth(damageDone);
-		ticksLeft--;
-		return (ticksLeft>0);
-	}
+    public boolean isRunning(){
+	return (ticksLeft>0)
+    }
+    public void run(){
+	organism.changeHealth(damageDone);
+	ticksLeft--;
+    }
 }
