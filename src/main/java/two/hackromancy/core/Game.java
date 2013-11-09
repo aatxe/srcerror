@@ -1,5 +1,6 @@
 package two.hackromancy.core;
 
+import org.lwjgl.LWJGLException;
 import two.hackromancy.lwjgl.Window;
 
 /**
@@ -8,6 +9,10 @@ import two.hackromancy.lwjgl.Window;
  * @since 11/8/13
  */
 public class Game extends Window {
+	public Game(int width, int height) throws LWJGLException {
+		super(width, height);
+	}
+
 	@Override
 	public void init() {
 		// TODO: init
