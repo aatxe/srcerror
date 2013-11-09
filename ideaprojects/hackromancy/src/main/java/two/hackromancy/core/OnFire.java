@@ -1,13 +1,13 @@
 package two.hackromancy.core;
-public class OnFire extends State{
+public class FireState extends State{
 	int ticksLeft;
 	int damageDone;
 	Organism organism;
-    public OnFire(Organism newOrganism,int ticks, int damage){
+    public FireState(Organism newOrganism,int ticks, int damage){
 	ticksLeft=ticks;
 	organism=newOrganism;
 	damageDone=damage;
-    public OnFire(Organism newOrganism,int ticks){
+    public FireState(Organism newOrganism,int ticks){
 	ticksLeft=ticks;
 	organism=newOrganism;
 	damageDone=15;
