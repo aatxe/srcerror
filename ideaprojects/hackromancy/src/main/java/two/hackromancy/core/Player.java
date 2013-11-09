@@ -29,12 +29,12 @@ public class Player implements Organism{
 	public void runItems(){
 		for(Item i:items){
 		if(!i.isRunning())
-			items.remove(i);}
+			items.remove(i);
 		
 	}
 
 	public void regen(){
-	changeHealth(10);
+		changeHealth(10);
 	}
 
 	public boolean run(){
