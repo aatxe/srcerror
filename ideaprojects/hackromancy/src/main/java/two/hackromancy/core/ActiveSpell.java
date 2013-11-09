@@ -17,6 +17,14 @@ public class ActiveSpell{
 		spell = newSpell;
 		speed = 2.0;
 	}
+	
+	private void changeXVelcoity(float velocity) {
+        	xVelocity += velocity;
+    	}
+
+    	private void changeYVelocity(float velocity) {
+        	yVelocity += velocity;
+    	}
 	//add methods like damage which do damage to enerything within a radius
 	public boolean run(){
 		//if(spell.isDamaging())damage(spell.damage());
