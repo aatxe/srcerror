@@ -21,7 +21,7 @@ public class OnFire extends State{
 	return (ticksLeft>0)
     }
     public void run(){
-	organism.changeHealth(damageDone);
+	organism.changeHealth(-1*damageDone);
 	ticksLeft--;
     }
 }
