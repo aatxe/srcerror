@@ -88,7 +88,6 @@ public class Organism implements Noun{
 		//note that a state should also get the name of the player... I know, but it appears to be the easiest way we can do this
 		states.add(ns);
         }
-}
         public ArrayList<States> getStates() {
                 return states;
         }
