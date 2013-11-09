@@ -106,7 +106,18 @@ public class ActiveSpell{
 	public boolean run(){
 		spell.run();
 		//if(spell.isDamaging())damage(spell.damage());
-		alive = true;
+		
+		if(spell.isCurseStating())
+            		floodStunState(spell.getCurseStateRadius());
+        	if(spell.isFireStating())
+            		floodFireState(spell.getFireStateRadius());
+        	if(spell.isRegenStating())
+            		floodRegenState(spell.getRegenStateRadius());
+        	if(spell.isSlowStating())
+            		floodSlowState(spell.getSlowStateRadius());
+        	if(spell.isStunStating())
+            		floodStunState(spell.getStunStateRadius());
+            		
 		return spell.isAlive();
 	}
 }
