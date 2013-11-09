@@ -5,6 +5,8 @@ import java.util.HashMap;
 public class Player extends Organism{
 	private String userName;
 	private HashMap<Spell> spells;
+	private energy;
+	
 	public Player(int nx, int ny,String nId,String newUserName,HashMap<Spell> nSpells){
 	super(nx,ny,173043,1.0,nId);
 	userName=newUserName;
@@ -19,9 +21,13 @@ public class Player extends Organism{
 	public void removeSpell(String name){
 	spells.remove(name);
 }
-
+	
+	public void changeEnergy(int delta) {
+		energy += delta;
+	}
 	public void regen(){
 	changeHealth(10);
+	energy = 10;
 	}
 
 	public boolean run(){
