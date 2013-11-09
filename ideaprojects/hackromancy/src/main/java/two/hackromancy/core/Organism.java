@@ -74,7 +74,6 @@ public class Organism {
 
         public void addState(State ns) {
 		//note that a state should also get the name of the player... I know, but it appears to be the easiest way we can do this
-                //also, even damage should be treated as a state (a one round state)
 		states.add(ns);
         }
 }
