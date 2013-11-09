@@ -43,10 +43,22 @@ public class Organism implements Noun{
                 health = nh;
 		if(health>maxHealth)health=maxHealth;
         }
+        
+        public void changeMaxHealth(float ch) {
+                maxHealth += ch;
+        }
+
+        public void setMaxHealth(float nh) {
+                maxHealth = nh;
+        }
 
         public float getHealth() {
                 return health;
         }
+        public float getMaxHealth() {
+                return maxHealth;
+        }
+
 
         public void changeSpeed(float cs) {
                 speed += cs;
