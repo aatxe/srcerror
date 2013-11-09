@@ -9,8 +9,8 @@ import two.hackromancy.lwjgl.Window;
  * @since 11/8/13
  */
 public class Game extends Window {
-	public Game(int width, int height) throws LWJGLException {
-		super(width, height);
+	public Game() throws LWJGLException {
+		super(800, 600);
 	}
 
 	@Override

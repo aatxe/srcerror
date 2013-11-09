@@ -7,6 +7,17 @@
     <artifactId>hackromancy</artifactId>
     <version>1.0-SNAPSHOT</version>
 
+    <repositories>
+        <repository>
+            <id>mavenNatives</id>
+            <name>Maven Natives Repository</name>
+            <url>http://mavennatives.googlecode.com/svn/repo</url>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
+        </repository>
+    </repositories>
+
     <dependencies>
         <dependency>
             <groupId>com.google.guava</groupId>
@@ -40,12 +51,13 @@
             <plugin>
                 <groupId>com.googlecode.mavennatives</groupId>
                 <artifactId>maven-nativedependencies-plugin</artifactId>
-                <version>0.0.6</version>
+                <version>0.0.7</version>
                 <executions>
                     <execution>
                         <id>unpacknatives</id>
                         <phase>generate-resources</phase>
                         <goals>
+                            <!--suppress MavenModelInspection (this line is for IDEA)-->
                             <goal>copy</goal>
                         </goals>
                     </execution>
