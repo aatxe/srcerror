@@ -1,6 +1,6 @@
 hackromancy
 ===========
-HELLO IRC PEOPLE! Welcome. You have way too much free time.
+Yes, you do.
 
 A simple RPG where hacking is magic. 
 
