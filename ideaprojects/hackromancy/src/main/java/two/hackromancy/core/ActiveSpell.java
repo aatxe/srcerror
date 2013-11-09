@@ -70,24 +70,24 @@ public class ActiveSpell{
     	
     	public void floodRegenState(float radius) {
 
-      	    ArrayList<Noun> nouns = nounsWithinRadius(radius);
-            for(int i = 0; i < nouns.size(); i++) {
-                if(nouns.get(i) instanceof Organism) {
-                    nouns.get(i).addState(new RegenState());
-                    player.changeEnergy((int)(-radius));
-                }
-            }
+      	    	ArrayList<Noun> nouns = nounsWithinRadius(radius);
+        	for(int i = 0; i < nouns.size(); i++) {
+                	if(nouns.get(i) instanceof Organism) {
+                    		nouns.get(i).addState(new RegenState());
+                    		player.changeEnergy((int)(-radius));
+                	}
+            	}
         }
         
         public void  floodStunState(float radius) {
 
-            ArrayList<Noun> nouns = nounsWithinRadius(radius);
-            for(int i = 0; i < nouns.size(); i++) {
-                if(nouns.get(i) instanceof Organism) {
-                    nouns.get(i).addState(new StunState());
-                    player.changeEnergy((int)(-radius));
-                }
-            }
+            	ArrayList<Noun> nouns = nounsWithinRadius(radius);
+            	for(int i = 0; i < nouns.size(); i++) {
+                	if(nouns.get(i) instanceof Organism) {
+                    		nouns.get(i).addState(new StunState());
+                    		player.changeEnergy((int)(-radius));
+                	}
+            	}
         }
         
         private ArrayList<Noun> nounsWithinRadius(float radius) {
