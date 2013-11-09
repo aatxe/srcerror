@@ -42,14 +42,14 @@ public class Sprite implements Renderable {
 		GL11.glBindTexture(GL11.GL_TEXTURE_2D, texture);
 		GL11.glVertexPointer(2, GL11.GL_FLOAT, 2 * Constants.SIZEOF_FLOAT, 0);
 		GL11.glTexCoordPointer(2, GL11.GL_FLOAT, 2 * Constants.SIZEOF_FLOAT, 0);
-		GL11.glPushMatrix();
-		GL11.glLoadIdentity();
-		GL11.glTranslated(x, y, 0f);
-		GL11.glScaled(data.getWidth(), data.getHeight(), 1);
 		ByteBuffer buf = ByteBuffer.allocateDirect(4 * data.getHeight() * data.getWidth());
 		data.decode(buf, data.getWidth() * 4, PNGDecoder.Format.RGBA);
 		buf.flip();
 		GL11.glTexImage2D(GL11.GL_TEXTURE_2D, 0, GL11.GL_RGBA, data.getWidth(), data.getHeight(), 0, GL11.GL_RGBA, GL11.GL_UNSIGNED_BYTE, buf);
+		GL11.glPushMatrix();
+		GL11.glLoadIdentity();
+		GL11.glTranslated(x, y, 0f);
+		GL11.glScaled(data.getWidth(), data.getHeight(), 1);
 		GL11.glDrawArrays(GL11.GL_QUADS, 0, 4);
 		GL11.glPopMatrix();
 		GL11.glBindTexture(GL11.GL_TEXTURE_2D, 0);
