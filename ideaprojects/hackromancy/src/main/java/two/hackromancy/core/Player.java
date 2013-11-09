@@ -32,6 +32,9 @@ public class Player extends Organism{
 		}
 	}
         
+        public int getEnergy() {
+      		return energy;
+        }
         public void changeEnergy(int delta) {
                 energy += delta;
         }
