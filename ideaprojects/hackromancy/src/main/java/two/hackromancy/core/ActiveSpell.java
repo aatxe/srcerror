@@ -35,7 +35,7 @@ public class ActiveSpell{
         	return spell.isAlive();
         }
         
-        public void setOnFire(float radius) {
+        public void floodFireState(float radius) {
 
         	ArrayList<Noun> nouns = nounsWithinRadius(radius);
         	for(int i = 0; i < nouns.size(); i++) {
@@ -46,7 +46,7 @@ public class ActiveSpell{
         	}
     	}	
     
-    	public void slowDown(float radius) {
+    	public void floodSlowState(float radius) {
 
         	ArrayList<Noun> nouns = nounsWithinRadius(radius);
         	for(int i = 0; i < nouns.size(); i++) {
@@ -57,6 +57,16 @@ public class ActiveSpell{
         	}
     	}
     	
+    	public void floodCurseState(float radius) {
+
+        	ArrayList<Noun> nouns = nounsWithinRadius(radius);
+        	for(int i = 0; i < nouns.size(); i++) {
+            		if(nouns.get(i) instanceof Organism) {
+                		nouns.get(i).addState(new CurseState());
+                		player.changeEnergy((int)(-radius));
+            		}
+        	}
+    	}
         private ArrayList<Noun> nounsWithinRadius(float radius) {
 
         	ArrayList<Noun> nounsInRadius = new ArrayList<Noun>();
