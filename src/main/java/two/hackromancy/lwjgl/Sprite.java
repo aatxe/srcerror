@@ -1,9 +1,14 @@
 package two.hackromancy.lwjgl;
 
+import de.matthiasmann.twl.utils.PNGDecoder;
 import org.lwjgl.BufferUtils;
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL15;
+import two.hackromancy.util.Constants;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
 import java.nio.IntBuffer;
 
 /**
@@ -12,26 +17,46 @@ import java.nio.IntBuffer;
  * @since 11/9/13
  */
 public class Sprite implements Renderable {
-	private int vbo = -1, texture = -1;
+	private static int vbo = -1;
+	private int texture = -1;
+	PNGDecoder data;
 
-	public Sprite() {
-		vbo = createVBO();
+	public Sprite(String path) throws IOException {
+		File file = new File(path);
+		data = new PNGDecoder(new FileInputStream(file));
+		generateTexture();
 	}
 
 	@Override
 	public void render() {
-		//To change body of implemented methods use File | Settings | File Templates.
+		render(0f, 0f);
+	}
+
+	public void render(float x, float y) {
+		GL15.glBindBuffer(GL15.GL_ARRAY_BUFFER, vbo);
+		GL11.glBindTexture(GL11.GL_TEXTURE_2D, texture);
+		GL11.glVertexPointer(2, GL11.GL_FLOAT, 2 * Constants.SIZEOF_FLOAT, 0);
+		GL11.glTexCoordPointer(2, GL11.GL_FLOAT, 2 * Constants.SIZEOF_FLOAT, 0);
+		GL11.glPushMatrix();
+		GL11.glLoadIdentity();
+		GL11.glTranslated(x, y, 0f);
+		GL11.glScaled(data.getWidth(), data.getHeight(), 1);
+		GL11.glDrawArrays(GL11.GL_QUADS, 0, 4);
+		GL11.glPopMatrix();
+		GL11.glBindTexture(GL11.GL_TEXTURE_2D, 0);
+		GL15.glBindBuffer(GL15.GL_ARRAY_BUFFER, 0);
 	}
 
 	@Override
 	public void dispose() {
-		//To change body of implemented methods use File | Settings | File Templates.
+		if (texture > 0)
+			GL11.glDeleteTextures(texture);
 	}
 
-	private int createVBO() {
+	public static void generateVBO() {
 		IntBuffer vbof = BufferUtils.createIntBuffer(1);
 		GL15.glGenBuffers(vbof);
-		return vbof.get(0);
+		vbo = vbof.get(0);
 	}
 
 	private int generateTexture() {

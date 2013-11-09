@@ -2,7 +2,10 @@ package two.hackromancy.core;
 
 import org.lwjgl.LWJGLException;
 import org.lwjgl.opengl.GL11;
+import two.hackromancy.lwjgl.Sprite;
 import two.hackromancy.lwjgl.Window;
+
+import java.io.IOException;
 
 /**
  * @author Aaron
@@ -10,14 +13,23 @@ import two.hackromancy.lwjgl.Window;
  * @since 11/8/13
  */
 public class Game extends Window {
-	public Game() throws LWJGLException {
+	private Sprite sprite;
+
+	public Game() throws LWJGLException, IOException {
 		super(800, 600);
 		setTitle("Hackromancy");
+		sprite = new Sprite("sprite.png");
 	}
 
 	@Override
 	public void init() {
 		clear();
+		Sprite.generateVBO();
+		GL11.glEnable(GL11.GL_BLEND);
+		GL11.glEnable(GL11.GL_TEXTURE_2D);
+		GL11.glEnableClientState(GL11.GL_VERTEX_ARRAY);
+		GL11.glEnableClientState(GL11.GL_TEXTURE_COORD_ARRAY);
+		GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
 	}
 
 	@Override
@@ -30,6 +42,7 @@ public class Game extends Window {
 		// TODO: rendering logic
 		clear();
 		setupView();
+		sprite.render();
 	}
 
 	public void clear() {
@@ -50,5 +63,9 @@ public class Game extends Window {
 	@Override
 	public void dispose() {
 		// TODO: clean dat shit up
+		GL11.glDisable(GL11.GL_BLEND);
+		GL11.glDisable(GL11.GL_TEXTURE_2D);
+		GL11.glDisableClientState(GL11.GL_VERTEX_ARRAY);
+		GL11.glDisableClientState(GL11.GL_TEXTURE_COORD_ARRAY);
 	}
 }
