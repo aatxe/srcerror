@@ -79,6 +79,17 @@ public class ActiveSpell{
             }
         }
         
+        public void  floodStunState(float radius) {
+
+            ArrayList<Noun> nouns = nounsWithinRadius(radius);
+            for(int i = 0; i < nouns.size(); i++) {
+                if(nouns.get(i) instanceof Organism) {
+                    nouns.get(i).addState(new StunState());
+                    player.changeEnergy((int)(-radius));
+                }
+            }
+        }
+        
         private ArrayList<Noun> nounsWithinRadius(float radius) {
 
         	ArrayList<Noun> nounsInRadius = new ArrayList<Noun>();
