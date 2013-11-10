@@ -181,11 +181,11 @@ public class ActiveSpell {
 		if (spell.isStunStating())
 			floodStunState(spell.getStunStateRadius());
 		if (spell.isSpeedChanging())
-			floodStunState(spell.getSpeedChangeRadius(), spell.getSpeedChangeAmount());
+			floodSpeedChange(spell.getSpeedChangeRadius(), spell.getSpeedChangeAmount());
 		if (spell.isFloodDamaging())
-			floodStunState(spell.getDamagingRadius(), spell.getDamagingAmount());
+			floodDamage(spell.getDamagingRadius(), spell.getDamagingAmount());
 		if (spell.isVelocityChanging())
-			floodStunState(spell.getXVelocityChange(), spell.getYVelocityChange());
+			velocityChange(spell.getXVelocityChange(), spell.getYVelocityChange());
 
 
 		return spell.isAlive();
