@@ -6,24 +6,28 @@ public class ActiveSpell {
 	private String id;
 	private float x, y;
 	private float xVelocity, yVelocity;
-	private float speed;
+	private boolean pushInProgess;
 	private ArrayList<Noun> worldNouns;
+	private ArrayList<Organism> pushNouns;
+	private ArrayList<Float> pushX, pushY;
 	private Player player;
 	private ActivePlayerSpellType spell;
 
 	public ActiveSpell(ArrayList<Noun> newNouns, Player newPlayer, ActivePlayerSpellType newSpell, String id) {
 		player = newPlayer;
-		worlNouns = newNouns;
+		worldNouns = newNouns;
 		x = player.getX();
 		y = player.getY();
 		spell = newSpell;
-		speed = 2.0;
 		this.id = id;
-		xVelocity = 0.0;
-		yVelocity = 0.0;
+		xVelocity = 0.0f;
+		yVelocity = 0.0f;
+		pushNouns = new ArrayList<Organism>();
+		pushX = new ArrayList<Organism>();
+		pushY = new ArrayList<Organism>();
 	}
 
-	public void changeXVelcoity(float velocity) {
+	public void changeXVelocity(float velocity) {
 		xVelocity += velocity;
 	}
 
@@ -40,9 +44,9 @@ public class ActiveSpell {
 	}
 
 	public void velocityChange(float xchange, float ychange) {
-		xVelocity += xchange;
-		yVelocity += ychange;
-		player.changeEnergy((int) (-xchange - ychange))
+		changeXVelocity(xchange);
+		changeYVelocity(ychange);
+		player.changeEnergy((int) (-xchange - ychange));
 	}
 
 
@@ -50,7 +54,8 @@ public class ActiveSpell {
 		ArrayList<Noun> nouns = nounsWithinRadius(radius);
 		for (int i = 0; i < nouns.size(); i++) {
 			if (nouns.get(i) instanceof Organism) {
-				nouns.get(i).changeHealth(-amount);
+				Organism temp = (Organism)nouns.get(i);
+				temp.changeHealth(-amount);
 				player.changeEnergy((int) (-radius - amount * amount));
 			}
 		}
@@ -60,7 +65,8 @@ public class ActiveSpell {
 		ArrayList<Noun> nouns = nounsWithinRadius(radius);
 		for (int i = 0; i < nouns.size(); i++) {
 			if (nouns.get(i) instanceof Organism) {
-				nouns.get(i).addState(new FireState());
+				Organism temp = (Organsim)nouns.get(i);
+				temp.addState(new FireState(temp));
 				player.changeEnergy((int) (-radius));
 			}
 		}
@@ -70,7 +76,8 @@ public class ActiveSpell {
 		ArrayList<Noun> nouns = nounsWithinRadius(radius);
 		for (int i = 0; i < nouns.size(); i++) {
 			if (nouns.get(i) instanceof Organism) {
-				nouns.get(i).addState(new SlowState());
+				Organism temp = (Organism)nouns.get(i);
+				temp.addState(new SlowState(temp));
 				player.changeEnergy((int) (-radius));
 			}
 		}
@@ -80,7 +87,8 @@ public class ActiveSpell {
 		ArrayList<Noun> nouns = nounsWithinRadius(radius);
 		for (int i = 0; i < nouns.size(); i++) {
 			if (nouns.get(i) instanceof Organism) {
-				nouns.get(i).addState(new CurseState());
+				Organism temp = (Organism)nouns.get(i);
+				temp.addState(new CurseState(temp));
 				player.changeEnergy((int) (-radius));
 			}
 		}
@@ -110,7 +118,7 @@ public class ActiveSpell {
 		ArrayList<Noun> nounsInRadius = new ArrayList<Noun>();
 		for (int i = 0; i < worldNouns.size(); i++) {
 			Noun curr = worldNouns.get(i);
-			float dist = Math.sqrt((curr.getX() - x) * (curr.getX() - x) + (curr.getY() - y) * (curr.getY() - y));
+			float dist = (float)Math.sqrt((curr.getX() - x) * (curr.getX() - x) + (curr.getY() - y) * (curr.getY() - y));
 			if (dist <= radius)
 				nounsInRadius.add(curr);
 		}
@@ -127,7 +135,6 @@ public class ActiveSpell {
 		return ret;
 	}
 	private boolean playerInRadius(float radius){
-		int ret=0;
 		ArrayList<Noun> nouns = nounsWithinRadius(radius);
 		for (int i = 0; i < nouns.size(); i++) {
 			if (nouns.get(i) instanceof Player) {
@@ -146,20 +153,20 @@ public class ActiveSpell {
 			}
 			pushInProgress = true;
 			for (int i = 0; i < pushNouns.size(); i++) {
-				pushX.add(pushNouns.getX() + player.getEnergy());
-				pushY.add(pushNouns.getY() + player.getEnergy());
+				pushX.add(pushNouns.get(i).getX() + player.getEnergy());
+				pushY.add(pushNouns.get(i).getY() + player.getEnergy());
 			}
 		}
-		if (pushNouns.get(0).getX() != pullX.get(0)) {
-			for (int i = 0; i < pushNouns.size()) {
+		if (pushNouns.get(0).getX() != pushX.get(0)) {
+			for (int i = 0; i < pushNouns.size(); i++) {
 				pushNouns.get(i).setX(pushNouns.get(i).getX() + increment);
 				pushNouns.get(i).setY(pushNouns.get(i).getY() + increment);
 			}
 		} else {
 			pushNouns.clear();
-			pushInProgess = false;
-			pullX.clear();
-			pullY.clear();
+			pushInProgress = false;
+			pushX.clear();
+			pushY.clear();
 		}
 	}
 
@@ -168,7 +175,7 @@ public class ActiveSpell {
 		x += xVelocity;
 		y += yVelocity;
 		if (spell.isCurseStating())
-			floodStunState(spell.getCurseStateRadius());
+			floodCurseState(spell.getCurseStateRadius());
 		if (spell.isFireStating())
 			floodFireState(spell.getFireStateRadius());
 		if (spell.isRegenStating())
