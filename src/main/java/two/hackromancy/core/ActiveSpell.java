@@ -45,15 +45,6 @@ public class ActiveSpell {
 		player.changeEnergy((int) (-xchange - ychange))
 	}
 
-	public void floodSpeedChange(float radius, float change) {
-		ArrayList<Noun> nouns = nounsWithinRadius(radius);
-		for (int i = 0; i < nouns.size(); i++) {
-			if (nouns.get(i) instanceof Organism) {
-				nouns.get(i).changeSpeed(change);
-				player.changeEnergy((int) (-radius - change));
-			}
-		}
-	}
 
 	public void floodDamage(float radius, float amount) {
 		ArrayList<Noun> nouns = nounsWithinRadius(radius);
@@ -186,8 +177,6 @@ public class ActiveSpell {
 			floodSlowState(spell.getSlowStateRadius());
 		if (spell.isStunStating())
 			floodStunState(spell.getStunStateRadius());
-		if (spell.isSpeedChanging())
-			floodSpeedChange(spell.getSpeedChangeRadius(), spell.getSpeedChangeAmount());
 		if (spell.isFloodDamaging())
 			floodDamage(spell.getDamagingRadius(), spell.getDamagingAmount());
 		if (spell.isVelocityChanging())
