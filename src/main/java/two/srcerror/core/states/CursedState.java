@@ -16,7 +16,7 @@ public class CursedState implements State {
     public CursedState(Organism organism, int length, int curseFactor) {
         this.organism = organism;
         remainingTicks = length;
-        this.durseFactor = curseFactor; 
+        this.curseFactor = curseFactor; 
     }
 
     @Override
