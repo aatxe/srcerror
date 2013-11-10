@@ -1,12 +1,12 @@
 package two.hackromancy.core;
 
+import two.hackromancy.util.Vector;
+
 import java.util.ArrayList;
 
 public class ActiveSpell {
 	private String id;
-	private float x, y;
-	private float xVelocity, yVelocity;
-	private float speed;
+	private Vector position, velocity;
 	private ArrayList<Noun> worldNouns;
 	private Player player;
 	private ActivePlayerSpellType spell;
@@ -17,18 +17,21 @@ public class ActiveSpell {
 		x = player.getX();
 		y = player.getY();
 		spell = newSpell;
-		speed = 2.0;
 		this.id = id;
 		xVelocity = 0.0;
 		yVelocity = 0.0;
 	}
 
-	public void changeXVelcoity(float velocity) {
-		xVelocity += velocity;
+	public void addVelocity(Vector velocity) {
+		this.velocity = new Vector(this.velocity.getX() + velocity.getX(), this.velocity.getY() + velocity.getY());
 	}
 
-	public void changeYVelocity(float velocity) {
-		yVelocity += velocity;
+	public void addVelocity(float x) {
+		addVelocity(new Vector(x));
+	}
+
+	public void addVelocity(float x, float y) {
+		addVelocity(new Vector(x, y));
 	}
 
 	public String getID() {
