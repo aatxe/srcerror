@@ -60,7 +60,7 @@ public class ActiveSpell {
 		for (int i = 0; i < nouns.size(); i++) {
 			if (nouns.get(i) instanceof Organism) {
 				nouns.get(i).changeHealth(-amount);
-				player.changeEnergy((int) (-radius + amount * amount));
+				player.changeEnergy((int) (-radius - amount * amount));
 			}
 		}
 	}
