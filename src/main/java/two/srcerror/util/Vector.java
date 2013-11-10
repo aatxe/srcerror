@@ -1,11 +1,7 @@
-package two.hackromancy.util;
+package two.srcerror.util;
 
-/**
- * @author Aaron
- * @version 1.0
- * @since 11/8/13
- */
 public class Vector {
+	public static final Vector zero = new Vector(0, 0, 0, 0);
 	private float x, y, z, w;
 
 	public Vector(float x) {
@@ -61,6 +57,10 @@ public class Vector {
 
 	public boolean isZero() {
 		return (x == y && y == z && z == w && w == 0);
+	}
+
+	public Vector add(Vector v) {
+		return new Vector(x + v.x, y + v.y, z + v.z, w + v.w);
 	}
 
 	public boolean equals(Object o) {
