@@ -5,6 +5,9 @@ public class SlowState extends State {
 	Organism organism;
 	int slowFactor;
 
+	public SlowState(Organism organism) {
+		this.organism = organism;
+	}
 	public SlowState(Organism newOrganism, int ticks, int slow) {
 		ticksLeft = ticks;
 		organism = newOrganism;
