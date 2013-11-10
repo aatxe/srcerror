@@ -9,19 +9,24 @@ public class Organism extends Noun {
 	protected float maxHealth;
 	protected float speed;
 	protected ArrayList<State> states = new ArrayList<State>();
-
+	private Vector vector;
+	
 	public Organism(float nx, float ny, int nMaxHealth, float nspeed, String nId) {
 		id = nId;
 		x = nx;
 		y = ny;
 		health = nMaxHealth;
 		maxHealth = nMaxHealth;
+		vector = new Vector(0);
 	}
 	public String getId()
 	{
 		return id;
 	}
 
+	public Vector getVector() {
+		return vector;
+	}
 	public void left() {
 		x += speed;
 	}
@@ -103,7 +108,7 @@ public class Organism extends Noun {
 
 	public void runStates() {
 		for (State i : states) {
-			if (!(i.run())) {states.remove(i);}
+			if (!(i.isRunning())) {states.remove(i);}
 		}
 	}
 
