@@ -17,7 +17,6 @@ public class ActiveSpell {
 		x = player.getX();
 		y = player.getY();
 		spell = newSpell;
-		speed = 2.0;
 		this.id = id;
 		xVelocity = 0.0;
 		yVelocity = 0.0;
