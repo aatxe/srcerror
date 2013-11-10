@@ -86,6 +86,11 @@ public abstract class Organism implements Noun {
 		}
 
 		@Override
+		public void decelerateX() {
+			velocity = velocity.sub(new Vector(Constants.ACCELERATION));
+		}
+
+		@Override
 		public void moveY() {
 			position = position.add(new Vector(0, velocity.getY()));
 		}
@@ -93,6 +98,11 @@ public abstract class Organism implements Noun {
 		@Override
 		public void accelerateY() {
 			velocity = velocity.add(new Vector(0, Constants.ACCELERATION));
+		}
+
+		@Override
+		public void decelerateY() {
+			velocity = velocity.sub(new Vector(0, Constants.ACCELERATION));
 		}
 	}
 

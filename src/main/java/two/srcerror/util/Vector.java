@@ -63,6 +63,10 @@ public class Vector {
 		return new Vector(x + v.x, y + v.y, z + v.z, w + v.w);
 	}
 
+	public Vector sub(Vector v) {
+		return new Vector(x - v.x, y - v.y, z - v.z, w - v.w);
+	}
+
 	public boolean equals(Object o) {
 		if (o == null)
 			return false;
