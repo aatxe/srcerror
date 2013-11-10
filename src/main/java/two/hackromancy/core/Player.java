@@ -5,10 +5,10 @@ import java.util.ArrayList;
 public class Player extends Organism {
 	private String userName;
 	private ArrayList<Spell> spells;
-	private energy;
+	private int energy;
 
-	public Player(int nx, int ny, String nId, String newUserName, ArrayList<Spell> nSpells) {
-		super(nx, ny, 173043, 1.0, nId);
+	public Player(float nx, float ny, String nId, String newUserName, ArrayList<Spell> nSpells) {
+		super(nx, ny, 173043, 1.0f, nId);
 		userName = newUserName;
 		spells = nSpells;
 	}
@@ -50,7 +50,6 @@ public class Player extends Organism {
 
 	public boolean run() {
 		runStates();
-		runItems();
 		regen();
 		return (health >= 0.0);
 	}
