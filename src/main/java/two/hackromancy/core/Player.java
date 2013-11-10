@@ -5,7 +5,7 @@ import java.util.ArrayList;
 public class Player extends Organism {
 	private String userName;
 	private ArrayList<Spell> spells;
-	private int energy;
+	private int energy = 2000;
 
 	public Player(float nx, float ny, String nId, String newUserName, ArrayList<Spell> nSpells) {
 		super(nx, ny, 173043, 1.0f, nId);
