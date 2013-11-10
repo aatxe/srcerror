@@ -1,10 +1,5 @@
 package two.hackromancy.util;
 
-import io.netty.buffer.ByteBuf;
-import io.netty.buffer.Unpooled;
-
-import java.nio.ByteOrder;
-
 /**
  * @author Aaron
  * @version 1.0
@@ -64,6 +59,10 @@ public class Vector {
 		return w;
 	}
 
+	public boolean isZero() {
+		return (x == y && y == z && z == w && w == 0);
+	}
+
 	public boolean equals(Object o) {
 		if (o == null)
 			return false;
@@ -98,34 +97,5 @@ public class Vector {
 				vec = null;
 		}
 		return vec;
-	}
-
-	public ByteBuf asByteBuf(int n) {
-		ByteBuf ret = Unpooled.buffer().order(ByteOrder.LITTLE_ENDIAN);
-		float vec[] = this.asFloatArray(n);
-		for (float f : vec) {
-			ret.writeFloat(f);
-		}
-		return ret;
-	}
-
-	public static Vector fromByteBuf(int n, ByteBuf b) {
-		Vector ret;
-		switch (n) {
-			case 1:
-				ret = new Vector(b.readFloat());
-				break;
-			case 2:
-				ret = new Vector(b.readFloat(), b.readFloat());
-				break;
-			case 3:
-				ret = new Vector(b.readFloat(), b.readFloat(), b.readFloat());
-				break;
-			default:
-			case 4:
-				ret = new Vector(b.readFloat(), b.readFloat(), b.readFloat(), b.readFloat());
-				break;
-		}
-		return ret;
 	}
 }

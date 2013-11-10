@@ -46,7 +46,6 @@ public class ActiveSpell {
 	}
 
 	public void floodSpeedChange(float radius, float change) {
-
 		ArrayList<Noun> nouns = nounsWithinRadius(radius);
 		for (int i = 0; i < nouns.size(); i++) {
 			if (nouns.get(i) instanceof Organism) {
@@ -57,7 +56,6 @@ public class ActiveSpell {
 	}
 
 	public void floodDamage(float radius, float amount) {
-
 		ArrayList<Noun> nouns = nounsWithinRadius(radius);
 		for (int i = 0; i < nouns.size(); i++) {
 			if (nouns.get(i) instanceof Organism) {
@@ -68,7 +66,6 @@ public class ActiveSpell {
 	}
 
 	public void floodFireState(float radius) {
-
 		ArrayList<Noun> nouns = nounsWithinRadius(radius);
 		for (int i = 0; i < nouns.size(); i++) {
 			if (nouns.get(i) instanceof Organism) {
@@ -79,7 +76,6 @@ public class ActiveSpell {
 	}
 
 	public void floodSlowState(float radius) {
-
 		ArrayList<Noun> nouns = nounsWithinRadius(radius);
 		for (int i = 0; i < nouns.size(); i++) {
 			if (nouns.get(i) instanceof Organism) {
@@ -90,7 +86,6 @@ public class ActiveSpell {
 	}
 
 	public void floodCurseState(float radius) {
-
 		ArrayList<Noun> nouns = nounsWithinRadius(radius);
 		for (int i = 0; i < nouns.size(); i++) {
 			if (nouns.get(i) instanceof Organism) {
@@ -101,7 +96,6 @@ public class ActiveSpell {
 	}
 
 	public void floodRegenState(float radius) {
-
 		ArrayList<Noun> nouns = nounsWithinRadius(radius);
 		for (int i = 0; i < nouns.size(); i++) {
 			if (nouns.get(i) instanceof Organism) {
@@ -112,7 +106,6 @@ public class ActiveSpell {
 	}
 
 	public void floodStunState(float radius) {
-
 		ArrayList<Noun> nouns = nounsWithinRadius(radius);
 		for (int i = 0; i < nouns.size(); i++) {
 			if (nouns.get(i) instanceof Organism) {
@@ -123,7 +116,6 @@ public class ActiveSpell {
 	}
 
 	private ArrayList<Noun> nounsWithinRadius(float radius) {
-
 		ArrayList<Noun> nounsInRadius = new ArrayList<Noun>();
 		for (int i = 0; i < worldNouns.size(); i++) {
 			Noun curr = worldNouns.get(i);
@@ -131,12 +123,10 @@ public class ActiveSpell {
 			if (dist <= radius)
 				nounsInRadius.add(curr);
 		}
-
 		return nounsInRadius;
 	}
 
 	public void floodPush(float radius) {
-
 		int increment = 5;
 		if (pushNouns.size() == 0) {
 			ArrayList<Noun> temp = nounsWithinRadius(radius);
@@ -150,7 +140,6 @@ public class ActiveSpell {
 				pushY.add(pushNouns.getY() + player.getEnergy());
 			}
 		}
-
 		if (pushNouns.get(0).getX() != pullX.get(0)) {
 			for (int i = 0; i < pushNouns.size()) {
 				pushNouns.get(i).setX(pushNouns.get(i).getX() + increment);
@@ -164,10 +153,8 @@ public class ActiveSpell {
 		}
 	}
 
-	//add methods like damage which do damage to enerything within a radius
 	public boolean run() {
 		spell.run();
-		//if(spell.isDamaging())damage(spell.damage());
 		x += xVelocity;
 		y += yVelocity;
 		if (spell.isCurseStating())
@@ -186,8 +173,6 @@ public class ActiveSpell {
 			floodStunState(spell.getDamagingRadius(), spell.getDamagingAmount());
 		if (spell.isVelocityChanging())
 			floodStunState(spell.getXVelocityChange(), spell.getYVelocityChange());
-
-
 		return spell.isAlive();
 	}
 }
