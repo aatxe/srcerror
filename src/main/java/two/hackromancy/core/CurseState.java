@@ -28,7 +28,7 @@ public class CurseState extends State {
 		if (ticksLeft > 0) {
 			ticksLeft--;
 			organism.changeMaxHealth(-1 * curseFactor);
-			if (organism.getMaxHealth < 0)
+			if (organism.getMaxHealth() < 0)
 				organism.setMaxHealth(0);
 
 		}
