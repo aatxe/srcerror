@@ -135,7 +135,16 @@ public class ActiveSpell {
 		}
 		return ret;
 	}
-
+	private boolean playerInRadius(float radius){
+		int ret=0;
+		ArrayList<Noun> nouns = nounsWithinRadius(radius);
+		for (int i = 0; i < nouns.size(); i++) {
+			if (nouns.get(i) instanceof Player) {
+				return true;
+			}
+		}
+		return false;
+	}
 	public void floodPush(float radius) {
 		int increment = 5;
 		if (pushNouns.size() == 0) {
@@ -185,6 +194,8 @@ public class ActiveSpell {
 			velocityChange(spell.getXVelocityChange(), spell.getYVelocityChange());
 		if (spell.isGetOrganismsInRadius())
 			spell.tellOrganismsInRadius(organismsInRadius(spell.organismsInRadius()));
+		if(spell.isGetPlayerInRadius())
+			spell.tellPlayerInRadius(playerInRadius(spell.playerInRadius()));
 		return spell.isAlive();
 	}
 }
