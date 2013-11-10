@@ -1,9 +1,9 @@
 package two.hackromancy.util;
 
-import java.nio.ByteOrder;
-
 import io.netty.buffer.ByteBuf;
 import io.netty.buffer.Unpooled;
+
+import java.nio.ByteOrder;
 
 /**
  * @author Aaron
