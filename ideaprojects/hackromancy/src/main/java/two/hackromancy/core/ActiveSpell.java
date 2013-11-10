@@ -134,7 +134,11 @@ public class ActiveSpell{
 
         	int increment = 5;
         	if(pushNouns.size() == 0) {
-            		pushNouns = nounsWithinRadius(radius);
+            		ArrayList<Noun> temp = nounsWithinRadius(radius);
+            		for(int i = 0; i < temp.size(); i++) {
+                		if(temp.get(i) instanceof Organism)
+                   			pushNouns.add(temp.get(i));
+            		}
             		pushInProgress = true;
             		for(int i = 0; i < pushNouns.size(); i++) {
                 		pushX.add(pushNouns.getX() + player.getEnergy());
