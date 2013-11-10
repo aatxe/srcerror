@@ -29,9 +29,23 @@ public class ActiveSpell{
        	     yVelocity += velocity;
         }
         
+        @Override
         public String getID() {
         	return id;
         }
+        
+        @Override
+        public float getX() {
+        	return x;
+        }
+        
+        @Override
+        public float getY() {
+        	return y;
+        }
+        
+        @Override
+        public Vector getVector() {}
         
         public boolean isAlive() {
         	return spell.isAlive();
@@ -160,6 +174,7 @@ public class ActiveSpell{
         	}
     	}
 	//add methods like damage which do damage to enerything within a radius
+	@Override
 	public boolean run(){
 		spell.run();
 		//if(spell.isDamaging())damage(spell.damage());
