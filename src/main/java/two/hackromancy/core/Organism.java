@@ -17,6 +17,10 @@ public class Organism extends Noun {
 		health = nMaxHealth;
 		maxHealth = nMaxHealth;
 	}
+	public String getId()
+	{
+		return id;
+	}
 
 	public void left() {
 		x += speed;
@@ -78,7 +82,7 @@ public class Organism extends Noun {
 	}
 
 	public void setY(float ny) {
-		y = cy;
+		y = ny;
 	}
 
 	public float getY() {
