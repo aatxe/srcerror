@@ -7,16 +7,16 @@ import two.srcerror.util.Constants;
 public class CursedState implements State {
 
     private final Organism organism;
-    private final int modifier;
+    private final int curseFactor;
     private int remainingTicks;
     
     public CursedState(Organism organism, int length) {
         this(organism, length, 15);
     }
-    public CursedState(Organism organism, int length, int modifier) {
+    public CursedState(Organism organism, int length, int curseFactor) {
         this.organism = organism;
         remainingTicks = length;
-        this.modifier = modifier; 
+        this.durseFactor = curseFactor; 
     }
 
     @Override
