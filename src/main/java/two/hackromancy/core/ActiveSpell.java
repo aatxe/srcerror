@@ -17,6 +17,7 @@ public class ActiveSpell {
 		x = player.getX();
 		y = player.getY();
 		spell = newSpell;
+		speed = 2.0;
 		this.id = id;
 		xVelocity = 0.0;
 		yVelocity = 0.0;
@@ -124,6 +125,16 @@ public class ActiveSpell {
 		}
 		return nounsInRadius;
 	}
+	private int organismsInRadius(float radius){
+		int ret=0;
+		ArrayList<Noun> nouns = nounsWithinRadius(radius);
+		for (int i = 0; i < nouns.size(); i++) {
+			if (nouns.get(i) instanceof Organism) {
+				ret++;
+			}
+		}
+		return ret;
+	}
 
 	public void floodPush(float radius) {
 		int increment = 5;
@@ -172,6 +183,8 @@ public class ActiveSpell {
 			floodDamage(spell.getDamagingRadius(), spell.getDamagingAmount());
 		if (spell.isVelocityChanging())
 			velocityChange(spell.getXVelocityChange(), spell.getYVelocityChange());
+		if (spell.isGetOrganismsInRadius())
+			spell.tellOrganismsInRadius(organismsInRadius(spell.organismsInRadius()));
 		return spell.isAlive();
 	}
 }
