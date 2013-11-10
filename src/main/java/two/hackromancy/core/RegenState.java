@@ -5,6 +5,9 @@ public class RegenState extends State {
 	private int healthDone;
 	private Organism organism;
 
+	public RegenState(Organism) {
+		this.organism = organism;
+	}
 	public RegenState(Organism newOrganism, int ticks, int health) {
 		ticksLeft = ticks;
 		organism = newOrganism;

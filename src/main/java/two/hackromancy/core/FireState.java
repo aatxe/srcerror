@@ -5,6 +5,9 @@ public class FireState extends State {
 	private int damageDone;
 	private Organism organism;
 
+	public FireState(Organism organism) {
+		this.organism = organism;
+	}
 	public FireState(Organism newOrganism, int ticks, int damage) {
 		ticksLeft = ticks;
 		organism = newOrganism;

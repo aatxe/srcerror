@@ -4,6 +4,9 @@ public class StunState extends State {
 	int ticksLeft;
 	Organism organism;
 
+	public StunState(Organism organism) {
+		this.organism = organism;
+	}
 	public StunState(Organism newOrganism, int ticks) {
 		ticksLeft = ticks;
 		organism = newOrganism;

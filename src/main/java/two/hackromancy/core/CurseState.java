@@ -5,6 +5,9 @@ public class CurseState extends State {
 	Organism organism;
 	int curseFactor;
 
+	public CurseState(Organism organism) {
+		this.organism = organism;
+	}
 	public CurseState(Organism newOrganism, int ticks, int curse) {
 		ticksLeft = ticks;
 		organism = newOrganism;
