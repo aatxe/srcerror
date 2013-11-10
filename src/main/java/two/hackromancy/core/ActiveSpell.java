@@ -193,9 +193,9 @@ public class ActiveSpell {
 		if (spell.isVelocityChanging())
 			velocityChange(spell.getXVelocityChange(), spell.getYVelocityChange());
 		if (spell.isGetOrganismsInRadius())
-			spell.areOrganismsInRadius(organismsInRadius(spell.organismsInRadius()));
+			spell.areOrganismsInRadius(organismsInRadius(spell.getOrganismsInRadius()));
 		if(spell.isGetPlayerInRadius())
-			spell.isPlayerInRadius(playerInRadius(spell.getplayerInRadius()));
+			spell.isPlayerInRadius(playerInRadius(spell.getPlayerInRadius()));
 		return spell.isAlive();
 	}
 }
