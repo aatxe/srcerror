@@ -129,6 +129,32 @@ public class ActiveSpell{
 
         	return nounsInRadius;
     	}
+    	
+    	public void floodPush(float radius) {
+
+        	int increment = 5;
+        	if(pushNouns.size() == 0) {
+            		pushNouns = nounsWithinRadius(radius);
+            		pushInProgress = true;
+            		for(int i = 0; i < pushNouns.size(); i++) {
+                		pushX.add(pushNouns.getX() + player.getEnergy());
+                		pushY.add(pushNouns.getY() + player.getEnergy());
+            		}
+        	}
+
+        	if(pushNouns.get(0).getX() != pullX.get(0)) {
+            		for(int i = 0; i < pushNouns.size()) {
+                		pushNouns.get(i).setX(pushNouns.get(i).getX() + increment);
+                		pushNouns.get(i).setY(pushNouns.get(i).getY() + increment);
+            		}
+        	}
+        	else {
+            		pushNouns.clear();
+            		pushInProgess = false;
+            		pullX.clear();
+            		pullY.clear();
+        	}
+    	}
 	//add methods like damage which do damage to enerything within a radius
 	public boolean run(){
 		spell.run();
