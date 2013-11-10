@@ -13,7 +13,7 @@ public class ActiveSpell {
 
 	public ActiveSpell(ArrayList<Noun> newNouns, Player newPlayer, ActivePlayerSpellType newSpell, String id) {
 		player = newPlayer;
-		nouns = newNouns;
+		worlNouns = newNouns;
 		x = player.getX();
 		y = player.getY();
 		spell = newSpell;
