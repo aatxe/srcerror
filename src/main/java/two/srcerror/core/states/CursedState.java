@@ -9,7 +9,10 @@ public class CursedState implements State {
     private final Organism organism;
     private final int modifier;
     private int remainingTicks;
-
+    
+    public CursedState(Organism organism, int length) {
+        this(organism, length, 15);
+    }
     public CursedState(Organism organism, int length, int modifier) {
         this.organism = organism;
         remainingTicks = length;
@@ -23,7 +26,7 @@ public class CursedState implements State {
 
     @Override
     public void tick() {
-        organism.hurt(modifier * Constants.CURSE_TICK_DAMAGE);
+        organism.hurt(modifier * curseFactor);
         remainingTicks--;
     }
 }
