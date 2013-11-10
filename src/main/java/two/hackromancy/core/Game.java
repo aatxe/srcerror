@@ -18,7 +18,7 @@ public class Game {
 		final File folder = new File(".");
 		player = new Player(0, 0, "Player-1", "Default-User-Name", getSpells(folder));
 		nouns = new ArrayList<Noun>();
-		nouns.add(new Mob(10, 10, "Mob-1", player));
+		nouns.add(new Mob(nouns, 10, 10, "Mob-1", player));
 
 	}
 
@@ -39,6 +39,7 @@ public class Game {
     	}
 	
 	private ArrayList<File> getSpellFiles(final File folder) {
+		ArrayList<File> files = new ArrayList<File>();
         	for (final File fileEntry : folder.listFiles()) {
             		if (fileEntry.isDirectory()) {
                 		getSpellFiles(fileEntry);
@@ -47,6 +48,7 @@ public class Game {
                 		files.add(fileEntry);
             		}
         	}
+        	return files;
     	}
 
 	public void update(float ticksPassed) {
@@ -58,7 +60,9 @@ public class Game {
 			}
 			for (Spell s : spells) {
 				if (s.hasCreate()) {
-					n.add(s.create());
+					spells.add(s.create()); // Still a compilation error. s.create() returns 
+								// ActiveSpell, not Spell. I don't know what was 
+								// meant to be done.
 				}
 			}
 		}
