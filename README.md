@@ -1,8 +1,7 @@
 SrcError
 ===========
 
-A simple RPG where hacking is magic.  
-n.b. This was never finished, and likely never will be finished. It was replaced by a hacked-together Python demo.
+A simple RPG where hacking is magic. This was never finished, and likely never will be finished. It was replaced by a hacked-together Python demo. The Python demo was equally a mess, but it at least ran. This just exists as a time capsule. 
 
 Justification
 =============
